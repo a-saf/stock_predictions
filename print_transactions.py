@@ -48,6 +48,29 @@ def linear_regression(prices):
 
 def printTransactions(m, k, d, name, owned, prices):
     money_available = m
-    
+    transactions = []
+    stock_count = 0
+
+    # sell all stocks with decreasing prices
+    for h in range(len(name)):
+        if slopes[h] < 0 and owned[h] > 0:
+            transactions.append(name[h] + " SELL " + owned[h])
+            owned[h] = 0
+
+    for j in range(len(name)):
+        while slopes[j] > 0 and money_available >= prices[j][4]:
+            money_available -= prices[j][4]
+            owned[j] += 1
+            stock_count += 1
+        transactions.append(name[j] + " BUY " + stock_count)
+
+    # print transactions to stdout
+    if len(transactions) > 0:
+        print(len(transactions))
+        for m in range(len(transactions)):
+            print(transactions[m])
+    else:
+        print(0)
+
 
 
