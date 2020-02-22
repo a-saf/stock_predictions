@@ -10,7 +10,7 @@ def printTransactions(m, k, d, name, owned, prices):
     days = [5, 4, 3, 2, 1]
     sum_xy = 0
 
-    for i in range(len(prices)):
+    for i in range(k):
         stock_prices = list(prices[i])
         sum_x = sum(stock_prices)
         sqr_stock_prices = list(np.array(stock_prices) ** 2)
