@@ -6,11 +6,12 @@ import math
 def printTransactions(m, k, d, name, owned, prices):
     money_available = m
     transactions = []
-    stock_count = 0
     days = [5, 4, 3, 2, 1]
-    sum_xy = 0
 
     for i in range(k):
+        stock_count = 0
+        sum_xy = 0
+
         stock_prices = list(prices[i])
         sum_x = sum(stock_prices)
         sqr_stock_prices = list(np.array(stock_prices) ** 2)
@@ -26,14 +27,14 @@ def printTransactions(m, k, d, name, owned, prices):
         if slope < 0 and owned[i] > 0:
             transactions.append(name[i] + " SELL " + str(owned[i]))
             owned[i] = 0
-
         # buy stocks that show an increasing trend in prices
         elif slope > 0:
             while money_available >= stock_prices[4]:
                 money_available -= stock_prices[4]
                 owned[i] += 1
                 stock_count += 1
-            transactions.append(name[i] + " BUY " + str(stock_count))
+            if stock_count > 0:
+                transactions.append(name[i] + " BUY " + str(stock_count))
 
     # do nothing for stocks that show no price change?
 
