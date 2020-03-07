@@ -21,7 +21,7 @@ def printTransactions(m, k, d, name, owned, prices):
             sum_xy += stock_prices[j] * days[j]
         # calculate slope for each stock using slope formula for linear regression
         # sum of days is 15
-        slope = (5 * sum_xy - 15 * sum_x) / (5 * sum_sqr_x - sum_x ** 2)
+        slope = (sum_xy - 15 * sum_x/5) / (sum_sqr_x - (sum_x ** 2)/5)
 
         # sell all stocks with decreasing prices
         if slope < 0 and owned[i] > 0:
